@@ -7,11 +7,15 @@ import {
   deleteDevice,
   getSelectedDevice,
   updateDevice,
-} from "../controller/device.js";
+} from "../controller/Device.js";
 
 const router = express.Router();
 
-router.post("/addDevice", addDevice);
+import multer from "multer";
+import { storage } from "../cloudinary/index.js";
+const upload = multer({ storage });
+
+router.post("/addDevice", upload.single("image"), addDevice);
 router.get("/getAllDevices", getAllDevices);
 router.post("/deleteDevice", deleteDevice);
 router.post("/getSelectedDevice", getSelectedDevice);
