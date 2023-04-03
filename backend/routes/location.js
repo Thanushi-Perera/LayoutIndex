@@ -7,7 +7,7 @@ import {
   deleteLocation,
   getSelectedLocation,
   updateLocation,
-} from "../controller/location.js";
+} from "../controller/Location.js";
 
 const router = express.Router();
 

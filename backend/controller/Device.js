@@ -1,16 +1,21 @@
-import { deviceModel } from "../models/device.js";
-
+import { deviceModel } from "../models/Device.js";
 
 export const addDevice = async (req, res) => {
-    try {
+  try {
+    const serialNumber = req.body.serialNumber;
+    const type = req.body.type;
+    let image = "";
+    if (req.file !== undefined) {
+      image = req.file.path;
+    }
+    const status = req.body.status;
 
     const device = new deviceModel({
-      serialNumber: req.body.serialNumber,
-      type: req.body.type,
-      image: req.body.image,
-      status: req.body.status,
+      serialNumber,
+      type,
+      image,
+      status,
     });
-    
 
     const details = await device.save();
 
@@ -47,14 +52,13 @@ export const updateDevice = async (req, res) => {
         _id: req.body.id,
         serialNumber: req.body.serialNumber,
         type: req.body.type,
-        image: req.body.image,
         status: req.body.status,
       },
       {
         new: true,
       }
     );
-    
+
     if (device) {
       res.send({
         status: 200,

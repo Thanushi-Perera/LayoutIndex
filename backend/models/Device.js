@@ -5,7 +5,7 @@ const Schema = mongoose.Schema;
 const deviceSchema = new Schema({
   serialNumber: { type: String, required: true },
   type: { type: String, required: true },
-  image: { type: String, required: true },
+  image: { type: String },
   status: { type: String, required: true },
 });
 
